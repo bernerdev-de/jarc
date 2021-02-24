@@ -14,7 +14,7 @@ We recommend running JARC in a containerized environment like docker or lxc. Doc
 
 ```bash
 docker volume create jarc
-docker run -p  --name jarc -v jarc:/app/data bernerdev/jarc:latest
+docker run -p 80:3000 --name jarc -v jarc:/app/data bernerdev/jarc:latest
 ```
 
 All your uploaded data will be stored in `/app/data`. Please mount this as volume and back it up regularly
