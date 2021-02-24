@@ -1,0 +1,7 @@
+*.env
+.env
+!example.env
+node_modules
+dist
+data
+password.txt

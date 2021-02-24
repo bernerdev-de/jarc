@@ -1,0 +1,12 @@
+data/
+*.env
+.eslintrc.js
+.prettierrc
+docker-compose*
+Dockerfile
+password.txt
+README.md
+node_modules/
+dist/
+.vscode/
+.gitignore

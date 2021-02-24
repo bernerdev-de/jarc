@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{> head}}
+
+  <title>JARC | Download</title>
+</head>
+
+<body>
+  <div class="main download">
+    <div class="header">
+      <a href="/{{rootFolder}}">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+        </svg>
+      </a>
+      <span>{{#if @root.rootFolder}}/{{@root.rootFolder}}{{/if}}/{{file}}</span>
+    </div>
+    <div class="content">
+      <img class="file-icon" src="/_static/images/{{#if extension}}{{extension}}{{else}}file{{/if}}.svg" data-type="{{extension}}" alt="">
+      <p id="file-name">{{file}}</p>
+    </div>
+    <div class="action-buttons">
+      <a class="btn" id="download-link" href="/raw{{#if @root.rootFolder}}/{{@root.rootFolder}}{{/if}}/{{file}}"
+        download>Download ({{size}})
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const image = document.querySelector('.file-icon');
+    if (['jpeg', 'gif', 'png', 'apng', 'svg', 'bmp', 'ico', 'jpg'].includes(image.getAttribute('data-type'))) {
+      image.classList.remove('file-icon');
+      image.src = document.getElementById('download-link').href;
+      document.getElementById('file-name').remove();
+      image.classList.add('preview');
+      document.querySelector('.main').classList.add('preview');
+    }
+  </script>
+</body>
+
+</html>

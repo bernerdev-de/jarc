@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{> head}}
+
+  <title>JARC | Browse</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="header">
+      {{#if rootFolder}}
+      <a href="/{{rootFolder}}/..">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+        </svg>
+      </a>
+      {{else}}
+      <a>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+        </svg>
+      </a>
+      {{/if}}
+      <span>{{#if @root.rootFolder}}/{{@root.rootFolder}}{{/if}}/</span>
+      <div>
+        <a onclick="openPopup('mkdir')">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M10,4L12,6H20A2,2 0 0,1 22,8V18A2,2 0 0,1 20,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10M15,9V12H12V14H15V17H17V14H20V12H17V9H15Z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    {{#if files}}
+    <div class="content left">
+      {{#each files}}
+      <a class="item" href="{{#if @root.rootFolder}}/{{@root.rootFolder}}{{/if}}/{{this.name}}">
+        {{#if this.folder}}
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z" />
+        </svg>
+        {{else}}
+        <svg viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z" />
+        </svg>
+        {{/if}}
+        <span>{{this.name}}</span>
+      </a>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="content">
+      This folder is emtpy
+    </div>
+    {{/if}}
+
+    <div class="action-buttons">
+      <button onclick="openPopup('upload')">Add files</button>
+    </div>
+  </div>
+
+  {{> popup_upload}}
+  {{> popup_mkdir}}
+</body>
+
+</html>
